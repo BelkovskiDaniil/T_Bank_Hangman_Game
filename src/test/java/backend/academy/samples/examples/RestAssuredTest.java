@@ -1,4 +1,4 @@
-package backend.academy.samples;
+package backend.academy.samples.examples;
 
 import io.restassured.http.ContentType;
 import java.util.Map;

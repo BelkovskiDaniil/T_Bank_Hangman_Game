@@ -1,4 +1,4 @@
-package backend.academy.samples;
+package backend.academy.samples.examples;
 
 import java.time.Duration;
 import org.junit.jupiter.api.Test;

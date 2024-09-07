@@ -1,4 +1,4 @@
-package backend.academy.samples;
+package backend.academy.samples.examples;
 
 import java.io.IOException;
 import java.nio.file.Files;
