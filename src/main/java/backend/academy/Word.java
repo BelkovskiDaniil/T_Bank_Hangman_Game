@@ -1,7 +1,7 @@
 package backend.academy;
 
-import lombok.Getter;
 import java.util.Arrays;
+import lombok.Getter;
 
 @Getter public class Word {
     private String word = "";

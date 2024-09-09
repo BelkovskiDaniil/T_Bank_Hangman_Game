@@ -1,8 +1,8 @@
 package backend.academy;
 
+import java.util.Scanner;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.Scanner;
 import static backend.academy.ConstantsGallows.containsInAlpabet;
 
 @Getter @Setter public class GameProcess {
@@ -53,7 +53,9 @@ import static backend.academy.ConstantsGallows.containsInAlpabet;
                 System.out.println("\nIncorrect input");
             }
 
-            if (!wordSecret.letterCheck(input)) gallow.add();
+            if (!wordSecret.letterCheck(input)) {
+                gallow.add();
+            }
             //Вызов подсказки
             if (input.equals("?")) {
                 System.out.println("\nYour hint: " + Dictionary.getHint(theme, level, wordSecret.word()));
@@ -61,8 +63,7 @@ import static backend.academy.ConstantsGallows.containsInAlpabet;
             if (wordSecret.isClear()) {
                 gameWin();
                 break;
-            }
-            else if (gallow.attempts() <= 0) {
+            } else if (gallow.attempts() <= 0) {
                 gameLose();
                 break;
             }

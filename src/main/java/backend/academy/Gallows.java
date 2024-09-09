@@ -1,7 +1,18 @@
 package backend.academy;
 
 import lombok.Getter;
+import static backend.academy.ConstantsGallows.COLUMN_HEAD;
+import static backend.academy.ConstantsGallows.COLUMN_LEFT;
+import static backend.academy.ConstantsGallows.COLUMN_MIDDLE;
+import static backend.academy.ConstantsGallows.COLUMN_RIGHT;
+import static backend.academy.ConstantsGallows.FIVE_SIXTHS;
+import static backend.academy.ConstantsGallows.FOUR_SIXTHS;
 import static backend.academy.ConstantsGallows.MAX_ATTEMPTS;
+import static backend.academy.ConstantsGallows.ROW_BODY;
+import static backend.academy.ConstantsGallows.ROW_HEAD;
+import static backend.academy.ConstantsGallows.ROW_LEGS;
+import static backend.academy.ConstantsGallows.THREE_SIXTHS;
+import static backend.academy.ConstantsGallows.TWO_SIXTHS;
 import static backend.academy.ConstantsGallows.deepCopyHangmanStage;
 
 @Getter public class Gallows {
@@ -11,18 +22,18 @@ import static backend.academy.ConstantsGallows.deepCopyHangmanStage;
     //Добавляем к висельнику детали в зависимости от того, какая доля жизней потрачена
     public void add() {
         attempts -= 1;
-        if (attempts >= MAX_ATTEMPTS / 6 * 5 && attempts != MAX_ATTEMPTS) {
-            hangman[2][1] = 'O';
-        } else if (attempts >= MAX_ATTEMPTS / 6 * 4) {
-            hangman[3][1] = '|';
-        } else if (attempts >= MAX_ATTEMPTS / 6 * 3) {
-            hangman[3][0] = '/';
-        } else if (attempts >= MAX_ATTEMPTS / 6 * 2) {
-            hangman[3][2] = '\\';
+        if (attempts >= FIVE_SIXTHS && attempts != MAX_ATTEMPTS) {
+            hangman[ROW_HEAD][COLUMN_HEAD] = 'O';
+        } else if (attempts >= FOUR_SIXTHS) {
+            hangman[ROW_BODY][COLUMN_MIDDLE] = '|';
+        } else if (attempts >= THREE_SIXTHS) {
+            hangman[ROW_BODY][COLUMN_LEFT] = '/';
+        } else if (attempts >= TWO_SIXTHS) {
+            hangman[ROW_BODY][COLUMN_RIGHT] = '\\';
         } else if (attempts > 0) {
-            hangman[4][0] = '/';
+            hangman[ROW_LEGS][COLUMN_LEFT] = '/';
         } else if (attempts == 0) {
-            hangman[4][2] = '\\';
+            hangman[ROW_LEGS][COLUMN_RIGHT] = '\\';
         }
     }
 
@@ -33,13 +44,13 @@ import static backend.academy.ConstantsGallows.deepCopyHangmanStage;
     }
 
     public void print() {
-        System.out.println();
+        System.out.println("\n");
         for (char[] row : hangman) {
             for (char c : row) {
                 System.out.print(c);
             }
-            System.out.println();
+            System.out.print("\n");
         }
-        System.out.println();
+        System.out.print("\n");
     }
 }

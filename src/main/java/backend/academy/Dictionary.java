@@ -1,13 +1,20 @@
 package backend.academy;
 
-import lombok.Getter;
 import java.util.Map;
 import java.util.Random;
+import lombok.Getter;
+import static backend.academy.ConstantsGallows.THEME_DEV;
+import static backend.academy.ConstantsGallows.THEME_RELIGION;
+import static backend.academy.ConstantsGallows.THEME_WAR;
 
-public class Dictionary {
+public final class Dictionary {
+
+    private Dictionary() {
+    }
+
     @SuppressWarnings("unchecked")
     @Getter
-    private final static Map<String, String>[] wordsWar = new Map[] {
+    private final static Map<String, String>[] WORDS_WAR = new Map[] {
         Map.ofEntries(
             Map.entry("battle", "A fight between armed forces."),
             Map.entry("combat", "Fighting between armed forces."),
@@ -70,7 +77,6 @@ public class Dictionary {
             Map.entry("international", "Involving two or more countries."),
             Map.entry("militarization", "The process of equipping or preparing for war."),
             Map.entry("multinational", "Involving several different countries."),
-            Map.entry("reconciliation", "The restoration of friendly relations."),
             Map.entry("reconstruction", "The rebuilding of a country after a war."),
             Map.entry("revolutionary", "Involving or causing a complete or dramatic change."),
             Map.entry("counterinsurgency", "Actions taken to defeat an insurgency."),
@@ -84,7 +90,7 @@ public class Dictionary {
 
     @SuppressWarnings("unchecked")
     @Getter
-    private final static Map<String, String>[] wordsDev = new Map[]{
+    private final static Map<String, String>[] WORDS_DEV = new Map[]{
         Map.ofEntries(
             Map.entry("coding", "The process of writing computer programs."),
             Map.entry("script", "A file containing code written in a scripting language."),
@@ -156,50 +162,55 @@ public class Dictionary {
             Map.entry("interoperability", "The ability of different systems to work together."),
             Map.entry("multithreading", "The use of multiple threads to perform tasks concurrently."),
             Map.entry("object-oriented", "A programming paradigm based on the concept of objects."),
-            Map.entry("optimization", "Improving the efficiency of software."),
             Map.entry("parameterization", "The process of defining parameters to make software more flexible."),
             Map.entry("preprocessing", "Processing data before the main process is executed."),
             Map.entry("reconfiguration", "Changing the setup of a system or software."),
-            Map.entry("serialization", "The process of converting an object into a format for storage or transmission."),
+            Map.entry("serialization", "The process of converting an object into a format "
+                + "for storage or transmission."),
             Map.entry("synchronization", "The coordination of processes to work in unison."),
             Map.entry("troubleshooting", "The process of diagnosing and fixing problems."),
             Map.entry("virtualization", "Creating a virtual version of a resource or environment."),
-            Map.entry("asynchronous", "Operations that occur independently of the main program flow."),
             Map.entry("compatibility", "The ability of software or hardware to work together."),
             Map.entry("decentralization", "Distributing functions away from a central authority."),
             Map.entry("decomposition", "Breaking down a complex problem into simpler parts."),
             Map.entry("deserialization", "The process of converting serialized data back into an object."),
             Map.entry("internationalization", "Designing software to be adaptable to different languages and regions."),
             Map.entry("microcontroller", "A small computer on a single integrated circuit."),
-            Map.entry("microservices", "An architectural style that structures an application as a collection of small services."),
+            Map.entry("microservices", "An architectural style that structures an "
+                + "application as a collection of small services."),
             Map.entry("reimplementation", "Implementing a system again, often for optimization or new features."),
             Map.entry("reinitialization", "Resetting a variable or object to its initial state."),
             Map.entry("restructuring", "Changing the organization of software code."),
-            Map.entry("subroutine", "A set of instructions designed to perform a specific task."),
             Map.entry("transformation", "Changing data from one format or structure to another.")
         )
     };
 
     @SuppressWarnings("unchecked")
     @Getter
-    private final static Map<String, String>[] wordsReligion = new Map[]{
+    private final static Map<String, String>[] WORDS_RELIGION = new Map[]{
         Map.ofEntries(
             Map.entry("prayer", "A solemn request or expression of thanks to a deity."),
             Map.entry("church", "A building used for public Christian worship."),
             Map.entry("temple", "A building dedicated to the worship of a god or gods."),
             Map.entry("mosque", "A Muslim place of worship."),
-            Map.entry("saints", "Individuals recognized as having an exceptional degree of holiness or likeness to God."),
+            Map.entry("saints", "Individuals recognized as having an exceptional"
+                + " degree of holiness or likeness to God."),
             Map.entry("deacon", "An ordained minister of an order ranking below that of a priest."),
-            Map.entry("shrine", "A place regarded as holy because of its associations with a divinity or a sacred person or relic."),
-            Map.entry("spirit", "The non-physical part of a person which is the seat of emotions and character; the soul."),
-            Map.entry("ritual", "A religious or solemn ceremony consisting of a series of actions performed according to a prescribed order."),
-            Map.entry("mantra", "A word or sound repeated to aid concentration in meditation, especially in Hinduism and Buddhism."),
+            Map.entry("shrine", "A place regarded as holy because of its"
+                + " associations with a divinity or a sacred person or relic."),
+            Map.entry("spirit", "The non-physical part of a person which is "
+                + "the seat of emotions and character; the soul."),
+            Map.entry("ritual", "A religious or solemn ceremony consisting of "
+                + "a series of actions performed according to a prescribed order."),
+            Map.entry("mantra", "A word or sound repeated to aid concentration "
+                + "in meditation, especially in Hinduism and Buddhism."),
             Map.entry("sermon", "A talk on a religious or moral subject, typically given during a church service."),
             Map.entry("worship", "The feeling or expression of reverence and adoration for a deity."),
             Map.entry("belief", "An acceptance that something exists or is true, especially without proof."),
             Map.entry("divine", "Of or like God or a god."),
             Map.entry("sacred", "Connected with God or a god; considered to be holy."),
-            Map.entry("clergy", "The body of all people ordained for religious duties, especially in the Christian Church."),
+            Map.entry("clergy", "The body of all people ordained for "
+                + "religious duties, especially in the Christian Church."),
             Map.entry("gospel", "The teaching or revelation of Christ."),
             Map.entry("hymnal", "A book of hymns used in religious services."),
             Map.entry("prophet", "A person regarded as an inspired teacher or proclaimer of the will of God.")
@@ -212,12 +223,15 @@ public class Dictionary {
             Map.entry("meditation", "A practice where an individual uses a technique to focus the mind."),
             Map.entry("scripture", "The sacred writings of a religion."),
             Map.entry("cathedral", "A principal church of a diocese, containing the bishop's throne."),
-            Map.entry("monastery", "A building or buildings occupied by a community of monks living under religious vows."),
+            Map.entry("monastery", "A building or buildings occupied by a"
+                + " community of monks living under religious vows."),
             Map.entry("synagogue", "A Jewish house of worship, often having facilities for religious instruction."),
             Map.entry("revelation", "A divine truth disclosed by God to humans."),
-            Map.entry("salvation", "Deliverance from sin and its consequences, often believed to be brought about by faith in Christ."),
+            Map.entry("salvation", "Deliverance from sin and its consequences, often believed "
+                + "to be brought about by faith in Christ."),
             Map.entry("redemption", "The action of saving or being saved from sin, error, or evil."),
-            Map.entry("sacrament", "A religious ceremony or act that is regarded as an outward and visible sign of inward and spiritual divine grace."),
+            Map.entry("sacrament", "A religious ceremony or act that is regarded as an"
+                + " outward and visible sign of inward and spiritual divine grace."),
             Map.entry("tradition", "A belief or behavior passed down within a group or society with symbolic meaning."),
             Map.entry("devotional", "Related to prayer, worship, or devotion to a deity."),
             Map.entry("evangelism", "The spreading of the Christian gospel by public preaching or personal witness."),
@@ -235,18 +249,23 @@ public class Dictionary {
             Map.entry("reincarnate", "To be born again in another body.")
         ),
         Map.ofEntries(
-            Map.entry("transubstantiation", "The belief in the transformation of the bread and wine into the body and blood of Christ in the Eucharist."),
+            Map.entry("transubstantiation", "The belief in the transformation of the bread and wine "
+                + "into the body and blood of Christ in the Eucharist."),
             Map.entry("predestination", "The doctrine that all events have been willed by God."),
             Map.entry("reconciliation", "The act of restoring friendly relations, especially between God and humans."),
             Map.entry("fundamentalism", "A strict adherence to the basic principles of any subject or discipline."),
             Map.entry("interdenominational", "Relating to multiple Christian denominations."),
             Map.entry("proselytization", "The act of converting someone to a different religion or faith."),
             Map.entry("ecclesiastical", "Relating to the Christian Church or its clergy."),
-            Map.entry("eschatological", "Relating to death, judgment, and the final destiny of the soul and of humankind."),
-            Map.entry("excommunication", "The act of officially excluding someone from participation in the sacraments and services of the Christian Church."),
+            Map.entry("eschatological", "Relating to death, judgment, and the final "
+                + "destiny of the soul and of humankind."),
+            Map.entry("excommunication", "The act of officially excluding someone"
+                + " from participation in the sacraments and services of the Christian Church."),
             Map.entry("infallibility", "The belief that the Pope is incapable of error in matters of doctrine."),
-            Map.entry("millenarianism", "Belief in a future thousand-year age of blessedness, beginning with the Second Coming of Christ."),
-            Map.entry("consubstantiation", "The belief that the substance of the bread and wine coexists with the body and blood of Christ in the Eucharist."),
+            Map.entry("millenarianism", "Belief in a future thousand-year "
+                + "age of blessedness, beginning with the Second Coming of Christ."),
+            Map.entry("consubstantiation", "The belief that the substance of the bread"
+                + " and wine coexists with the body and blood of Christ in the Eucharist."),
             Map.entry("dispensationalism", "A theological view that divides history into periods or dispensations."),
             Map.entry("evangelization", "The act of spreading the Christian gospel."),
             Map.entry("sanctification", "The process of becoming holy or being made holy.")
@@ -256,10 +275,10 @@ public class Dictionary {
     public static String getWord(int theme, int level) {
         Random random = new Random();
         Map<String, String> chosenMap = switch (theme) {
-            case 1 -> wordsWar[level - 1];
-            case 2 -> wordsDev[level - 1];
-            case 3 -> wordsReligion[level - 1];
-            default -> wordsWar[1];
+            case THEME_WAR -> WORDS_WAR[level - 1];
+            case THEME_DEV -> WORDS_DEV[level - 1];
+            case THEME_RELIGION -> WORDS_RELIGION[level - 1];
+            default -> WORDS_WAR[1];
         };
 
         String[] keys = chosenMap.keySet().toArray(new String[0]);
@@ -268,10 +287,10 @@ public class Dictionary {
 
     public static String getHint(int theme, int level, String word) {
         Map<String, String> chosenMap = switch (theme) {
-            case 1 -> wordsWar[level - 1];
-            case 2 -> wordsDev[level - 1];
-            case 3 -> wordsReligion[level - 1];
-            default -> wordsWar[1];
+            case THEME_WAR -> WORDS_WAR[level - 1];
+            case THEME_DEV -> WORDS_DEV[level - 1];
+            case THEME_RELIGION -> WORDS_RELIGION[level - 1];
+            default -> WORDS_WAR[1];
         };
 
         return chosenMap.getOrDefault(word, "Word not found in the specified theme and level.");
