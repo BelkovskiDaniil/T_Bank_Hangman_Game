@@ -43,7 +43,9 @@ import static backend.academy.ConstantsGallows.deepCopyHangmanStage;
         hangman = deepCopyHangmanStage();
     }
 
+    @SuppressWarnings("squid:S106")
     public void print() {
+        // CHECKSTYLE:OFF
         System.out.println("\n");
         for (char[] row : hangman) {
             for (char c : row) {
@@ -52,5 +54,6 @@ import static backend.academy.ConstantsGallows.deepCopyHangmanStage;
             System.out.print("\n");
         }
         System.out.print("\n");
+        // CHECKSTYLE:ON
     }
 }

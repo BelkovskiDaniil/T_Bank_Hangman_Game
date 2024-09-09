@@ -25,13 +25,16 @@ import lombok.Getter;
         return found;
     }
 
+    @SuppressWarnings("squid:S106")
     public void print() {
+        // CHECKSTYLE:OFF
         StringBuilder answer = new StringBuilder();
         for (char c : secretWord) {
             answer.append(c).append(" ");
         }
         System.out.println(answer);
         System.out.println();
+        // CHECKSTYLE:ON
     }
 
     //Проверка, отгадано ли слово

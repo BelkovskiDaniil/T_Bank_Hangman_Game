@@ -18,6 +18,7 @@ import static backend.academy.ConstantsGallows.THEME_WAR;
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
 
+    @SuppressWarnings("squid:S106")
     public void gameStart() {
         boolean shoudIUpdate = true;
         int theme = 1;
@@ -26,18 +27,22 @@ import static backend.academy.ConstantsGallows.THEME_WAR;
         while (cycleKey) {
             //Проверка корректности количества попыток
             if (ConstantsGallows.MAX_ATTEMPTS < MIN_AVAILABLE_ATTEMPTS) {
+                // CHECKSTYLE:OFF
                 System.out.println("""
                     \nIncorrect number of attempts! (Should be more than 5)""");
                 break;
+                // CHECKSTYLE:ON
             }
             //Проверка, нужно ли обновить данные при перезапуске игры
             if (shoudIUpdate) {
+                // CHECKSTYLE:OFF
                 System.out.println("""
                     \nChoose theme of words
                     Enter number of them (if incorrect input, we will use random)
                     1. War
                     2. Program development
                     3. Religion""");
+                // CHECKSTYLE:ON
 
                 input = scanner.nextLine();
                 theme = switch (input) {
@@ -47,12 +52,14 @@ import static backend.academy.ConstantsGallows.THEME_WAR;
                     default -> NUMBERS_FOR_RANDOM[random.nextInt(NUMBERS_FOR_RANDOM.length)];
                 };
 
+                // CHECKSTYLE:OFF
                 System.out.println("""
                     \nChoose difficult of words
                     Enter number of them (if incorrect input, we will use random)
                     1. Easy
                     2. Medium
                     3. Hard""");
+                // CHECKSTYLE:ON
 
                 input = scanner.nextLine();
                 difficult = switch (input) {
@@ -66,24 +73,30 @@ import static backend.academy.ConstantsGallows.THEME_WAR;
             GameProcess gameProcess = new GameProcess(Dictionary.getWord(theme, difficult), theme, difficult);
             gameProcess.gameProcess();
 
+            // CHECKSTYLE:OFF
             System.out.println("""
                 \nWanna play one more time?
                 Enter number of them (if incorrect input, we will finish session)
                 1. Yeah
                 2. Nope""");
+            // CHECKSTYLE:ON
 
             input = scanner.nextLine();
             if (!input.equals("1")) {
+                // CHECKSTYLE:OFF
                 System.out.println("""
                 \nThanks for game""");
                 break;
+                // CHECKSTYLE:ON
             }
 
+            // CHECKSTYLE:OFF
             System.out.println("""
                 \nUpdate settings?
                 Enter number of them (if incorrect input, we will don't change settings)
                 1. Yeah
                 2. Nope""");
+            // CHECKSTYLE:ON
 
             input = scanner.nextLine();
             shoudIUpdate = input.equals("1");
