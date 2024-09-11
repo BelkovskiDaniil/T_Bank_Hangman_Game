@@ -1,109 +1,105 @@
 package backend.academy;
 
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Getter;
+
 public final class ConstantsGallows {
-    public static final int MAX_ATTEMPTS = 6;
+    public static final int ATTEMPTS_FOR_CURRENT_GAME = 6;
     public static final int MIN_AVAILABLE_ATTEMPTS = 6;
-    public static final int[] NUMBERS_FOR_RANDOM = {1, 2, 3};
-    public static final int THEME_WAR = 1;
-    public static final int THEME_DEV = 2;
-    public static final int THEME_RELIGION = 3;
-    public static final int DIF_EASY = 1;
-    public static final int DIF_MEDIUM = 2;
-    public static final int DIF_HARD = 3;
-    public static final int FIVE_SIXTHS = MAX_ATTEMPTS / 6 * 5;
-    public static final int FOUR_SIXTHS = MAX_ATTEMPTS / 6 * 4;
-    public static final int THREE_SIXTHS = MAX_ATTEMPTS / 6 * 3;
-    public static final int TWO_SIXTHS = MAX_ATTEMPTS / 6 * 2;
+    public static final int EASY_DIFFICULT = 1;
+    public static final int MEDIUM_DIFFICULT = 2;
+    public static final int HARD_DIFFICULT = 3;
+    public static final int TITLE_OF_THEME = 0;
+    public static final String HINT_COMMAND = "?";
 
-    public static final int ROW_HEAD = 2;
-    public static final int COLUMN_HEAD = 1;
-    public static final int ROW_BODY = 3;
-    public static final int ROW_LEGS = 4;
-    public static final int COLUMN_LEFT = 0;
-    public static final int COLUMN_MIDDLE = 1;
-    public static final int COLUMN_RIGHT = 2;
-
-
-
-    private static final String[] ALPHABET = {
+    private static final List<String> ALPHABET = List.of(
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
         "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "?"
-    };
+    );
 
-    public static final char[][] HANGMAN_STAGE_0 = {
-        {' ', '+', '-', '-', '+'},
-        {' ', '|', ' ', ' ', '|'},
-        {' ', ' ', ' ', ' ', '|'},
-        {' ', ' ', ' ', ' ', '|'},
-        {' ', ' ', ' ', ' ', '|'},
-        {'=', '=', '=', '=', '='}
-    };
+    @Getter
+    static final List<char[][]> HANGMAN_STAGES = new ArrayList<>();
 
-    public static final char[][] HANGMAN_STAGE_1 = {
-        {' ', '+', '-', '-', '+'},
-        {' ', '|', ' ', ' ', '|'},
-        {' ', 'O', ' ', ' ', '|'},
-        {' ', ' ', ' ', ' ', '|'},
-        {' ', ' ', ' ', ' ', '|'},
-        {'=', '=', '=', '=', '='}
-    };
+    static {
+        HANGMAN_STAGES.add(new char[][] {
+            {' ', '+', '-', '-', '+'},
+            {' ', '|', ' ', ' ', '|'},
+            {' ', ' ', ' ', ' ', '|'},
+            {' ', ' ', ' ', ' ', '|'},
+            {' ', ' ', ' ', ' ', '|'},
+            {'=', '=', '=', '=', '='}
+        });
 
-    public static final char[][] HANGMAN_STAGE_2 = {
-        {' ', '+', '-', '-', '+'},
-        {' ', '|', ' ', ' ', '|'},
-        {' ', 'O', ' ', ' ', '|'},
-        {' ', '|', ' ', ' ', '|'},
-        {' ', ' ', ' ', ' ', '|'},
-        {'=', '=', '=', '=', '='}
-    };
+        HANGMAN_STAGES.add(new char[][] {
+            {' ', '+', '-', '-', '+'},
+            {' ', '|', ' ', ' ', '|'},
+            {' ', 'O', ' ', ' ', '|'},
+            {' ', ' ', ' ', ' ', '|'},
+            {' ', ' ', ' ', ' ', '|'},
+            {'=', '=', '=', '=', '='}
+        });
 
-    public static final char[][] HANGMAN_STAGE_3 = {
-        {' ', '+', '-', '-', '+'},
-        {' ', '|', ' ', ' ', '|'},
-        {' ', 'O', ' ', ' ', '|'},
-        {'/', '|', ' ', ' ', '|'},
-        {' ', ' ', ' ', ' ', '|'},
-        {'=', '=', '=', '=', '='}
-    };
+        HANGMAN_STAGES.add(new char[][] {
+            {' ', '+', '-', '-', '+'},
+            {' ', '|', ' ', ' ', '|'},
+            {' ', 'O', ' ', ' ', '|'},
+            {' ', '|', ' ', ' ', '|'},
+            {' ', ' ', ' ', ' ', '|'},
+            {'=', '=', '=', '=', '='}
+        });
 
-    public static final char[][] HANGMAN_STAGE_4 = {
-        {' ', '+', '-', '-', '+'},
-        {' ', '|', ' ', ' ', '|'},
-        {' ', 'O', ' ', ' ', '|'},
-        {'/', '|', '\\', ' ', '|'},
-        {' ', ' ', ' ', ' ', '|'},
-        {'=', '=', '=', '=', '='}
-    };
+        HANGMAN_STAGES.add(new char[][] {
+            {' ', '+', '-', '-', '+'},
+            {' ', '|', ' ', ' ', '|'},
+            {' ', 'O', ' ', ' ', '|'},
+            {'/', '|', ' ', ' ', '|'},
+            {' ', ' ', ' ', ' ', '|'},
+            {'=', '=', '=', '=', '='}
+        });
 
-    public static final char[][] HANGMAN_STAGE_5 = {
-        {' ', '+', '-', '-', '+'},
-        {' ', '|', ' ', ' ', '|'},
-        {' ', 'O', ' ', ' ', '|'},
-        {'/', '|', '\\', ' ', '|'},
-        {'/', ' ', ' ', ' ', '|'},
-        {'=', '=', '=', '=', '='}
-    };
+        HANGMAN_STAGES.add(new char[][] {
+            {' ', '+', '-', '-', '+'},
+            {' ', '|', ' ', ' ', '|'},
+            {' ', 'O', ' ', ' ', '|'},
+            {'/', '|', '\\', ' ', '|'},
+            {' ', ' ', ' ', ' ', '|'},
+            {'=', '=', '=', '=', '='}
+        });
 
-    public static final char[][] HANGMAN_STAGE_6 = {
-        {' ', '+', '-', '-', '+'},
-        {' ', '|', ' ', ' ', '|'},
-        {' ', 'O', ' ', ' ', '|'},
-        {'/', '|', '\\', ' ', '|'},
-        {'/', ' ', '\\', ' ', '|'},
-        {'=', '=', '=', '=', '='}
-    };
+        HANGMAN_STAGES.add(new char[][] {
+            {' ', '+', '-', '-', '+'},
+            {' ', '|', ' ', ' ', '|'},
+            {' ', 'O', ' ', ' ', '|'},
+            {'/', '|', '\\', ' ', '|'},
+            {'/', ' ', ' ', ' ', '|'},
+            {'=', '=', '=', '=', '='}
+        });
+
+        HANGMAN_STAGES.add(new char[][] {
+            {' ', '+', '-', '-', '+'},
+            {' ', '|', ' ', ' ', '|'},
+            {' ', 'O', ' ', ' ', '|'},
+            {'/', '|', '\\', ' ', '|'},
+            {'/', ' ', '\\', ' ', '|'},
+            {'=', '=', '=', '=', '='}
+        });
+    }
 
     private ConstantsGallows() {
     }
 
-    public static char[][] deepCopyHangmanStage() {
-        if (ConstantsGallows.HANGMAN_STAGE_0 == null) {
+    public static char[][] deepCopyHangmanStage(int step) {
+        int validStep = step;
+        if (HANGMAN_STAGES.isEmpty()) {
             return null;
+        } else if (validStep >= HANGMAN_STAGES.size()) {
+            validStep = 0;
         }
 
-        char[][] result = new char[ConstantsGallows.HANGMAN_STAGE_0.length][];
-        for (int i = 0; i < ConstantsGallows.HANGMAN_STAGE_0.length; i++) {
-            result[i] = ConstantsGallows.HANGMAN_STAGE_0[i].clone();
+        char[][] result = new char[ConstantsGallows.HANGMAN_STAGES.get(validStep).length][];
+        for (int i = 0; i < ConstantsGallows.HANGMAN_STAGES.get(validStep).length; i++) {
+            result[i] = ConstantsGallows.HANGMAN_STAGES.get(validStep)[i].clone();
         }
         return result;
     }

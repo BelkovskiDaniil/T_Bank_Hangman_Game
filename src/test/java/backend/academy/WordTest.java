@@ -1,7 +1,6 @@
-import backend.academy.Dictionary;
-import backend.academy.Word;
+package backend.academy;
+
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

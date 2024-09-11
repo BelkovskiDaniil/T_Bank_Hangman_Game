@@ -1,18 +1,24 @@
 package backend.academy;
 
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import lombok.Getter;
 import lombok.Setter;
+import static backend.academy.ConstantsGallows.HINT_COMMAND;
 import static backend.academy.ConstantsGallows.containsInAlpabet;
 
-@Getter @Setter public class GameProcess {
+@Getter
+@Setter
+public class GameProcess {
     String word = "";
     int theme = 1;
     int level = 1;
     int gameStatus = 0;
     Gallows gallow = new Gallows();
     Word wordSecret;
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(new InputStreamReader(System.in, StandardCharsets.UTF_8));
+    String hint = "";
 
     public GameProcess(String word, int theme, int level) {
         this.word = word;
@@ -24,10 +30,11 @@ import static backend.academy.ConstantsGallows.containsInAlpabet;
     @SuppressWarnings("squid:S106")
     public void gameWin() {
         // CHECKSTYLE:OFF
+        wordSecret.clearUsedLetters();
         gallow.print();
         wordSecret.print();
         System.out.println("""
-                    Your are lucky winner!""");
+                    Your are lucky winner!\n""");
         gameStatus = 1;
         // CHECKSTYLE:ON
     }
@@ -35,10 +42,14 @@ import static backend.academy.ConstantsGallows.containsInAlpabet;
     @SuppressWarnings("squid:S106")
     public void gameLose() {
         // CHECKSTYLE:OFF
+        wordSecret.clearUsedLetters();
         gallow.print();
         wordSecret.print();
         System.out.println("""
                     Your are loose, maybe next time!""");
+        wordSecret.makeClear();
+        System.out.println("\nAnswer was:");
+        wordSecret.print();
         gameStatus = 2;
         // CHECKSTYLE:ON
     }
@@ -51,6 +62,11 @@ import static backend.academy.ConstantsGallows.containsInAlpabet;
             System.out.println("\nYou have " + gallow.attempts() + " lives");
             // CHECKSTYLE:ON
             gallow.print();
+            if (!hint.isEmpty()) {
+                // CHECKSTYLE:OFF
+                System.out.println("Your hint: " + hint + "\n");
+                // CHECKSTYLE:ON
+            }
             wordSecret.print();
             //Ожидание корректного ввода
             while (true) {
@@ -58,9 +74,12 @@ import static backend.academy.ConstantsGallows.containsInAlpabet;
                 System.out.println("Choose your letter! If you need a hint, enter \"?\" and lose one life!");
                 input = scanner.nextLine().toLowerCase();
                 if (containsInAlpabet(input)) {
-                    break;
+                    if (!wordSecret.isLetterUsed(input)) {
+                        break;
+                    }
+                    System.out.println("\nSymbol has already been used");
                 }
-                System.out.println("\nIncorrect input");
+                System.out.println("\nIncorrect input\n");
                 // CHECKSTYLE:ON
             }
 
@@ -68,9 +87,9 @@ import static backend.academy.ConstantsGallows.containsInAlpabet;
                 gallow.add();
             }
             //Вызов подсказки
-            if (input.equals("?")) {
+            if (HINT_COMMAND.equals(input)) {
                 // CHECKSTYLE:OFF
-                System.out.println("\nYour hint: " + Dictionary.getHint(theme, level, wordSecret.word()));
+                hint = Dictionary.getHint(theme, level, wordSecret.word());
                 // CHECKSTYLE:ON
             }
             if (wordSecret.isClear()) {

@@ -1,6 +1,5 @@
-import backend.academy.Gallows;
-import backend.academy.GameProcess;
-import backend.academy.Word;
+package backend.academy;
+
 import org.apache.commons.lang3.Validate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,6 +46,19 @@ public class GameProcessTest {
         // Проверка, что метод завершился корректно
         verify(mockWord, atLeastOnce()).print();
     }
+
+    @Test
+    public void testAddCallOnRepeatedIncorrectInput() {
+        when(mockScanner.nextLine()).thenReturn("f", "f");
+
+        when(mockWord.letterCheck(anyString())).thenReturn(false);
+
+        gameProcess.gameProcess();
+
+        // Проверяем, что при повторном вводе неправильной буквы, теряется только одна жизнь
+        verify(mockGallows, times(1)).add();
+    }
+
 
     @Test
     public void testNoAddCallOnIncorrectInputNumber() {
