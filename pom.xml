@@ -228,6 +228,11 @@
             <artifactId>rest-assured</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.46.1.0</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -265,6 +270,7 @@
                 <version>${modernizer-maven-plugin.version}</version>
                 <optional>true</optional>
             </dependency>
+
 
             <!-- CLI -->
             <dependency>

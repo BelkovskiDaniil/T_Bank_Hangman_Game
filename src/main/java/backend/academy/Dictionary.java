@@ -291,7 +291,6 @@ public final class Dictionary {
         return themes;
     }
 
-
     public static String getWord(int theme, int level) {
         int realTheme = theme;
         if (realTheme >= THEMES.size()) {

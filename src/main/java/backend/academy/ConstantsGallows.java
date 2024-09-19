@@ -11,7 +11,12 @@ public final class ConstantsGallows {
     public static final int MEDIUM_DIFFICULT = 2;
     public static final int HARD_DIFFICULT = 3;
     public static final int TITLE_OF_THEME = 0;
+    public static final int GAME_LOOSE = 2;
+    public static final int GAME_WIN = 1;
+    public static final int GAME_NEXT_LEVEL = 0;
     public static final String HINT_COMMAND = "?";
+    public static final int GAME_MODE_DEFAULT = 1;
+    public static final int GAME_MODE_SURVIVAL = 2;
 
     private static final List<String> ALPHABET = List.of(
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",

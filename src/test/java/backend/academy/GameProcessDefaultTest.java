@@ -7,24 +7,24 @@ import org.mockito.Mockito;
 import java.util.Scanner;
 import static org.mockito.Mockito.*;
 
-public class GameProcessTest {
+public class GameProcessDefaultTest {
     private Gallows mockGallows;
     private Word mockWord;
     private Scanner mockScanner;
-    private GameProcess gameProcess;
+    private GameProcessDefault gameProcessDefault;
 
     @BeforeEach
     public void setUp() {
         mockGallows = mock(Gallows.class);
         mockWord = mock(Word.class);
         mockScanner = mock(Scanner.class);
-        gameProcess = new GameProcess("battle", 1, 1);
+        gameProcessDefault = new GameProcessDefault("battle", 1, 1);
 
         Mockito.when(mockWord.word()).thenReturn("battle");
 
-        gameProcess.gallow(mockGallows);
-        gameProcess.wordSecret(mockWord);
-        gameProcess.scanner(mockScanner);
+        gameProcessDefault.gallow(mockGallows);
+        gameProcessDefault.wordSecret(mockWord);
+        gameProcessDefault.scanner(mockScanner);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class GameProcessTest {
         when(mockWord.isClear()).thenReturn(false, false, false, false, false, true);
 
         // Выполнение тестируемого метода
-        gameProcess.gameProcess();
+        gameProcessDefault.gameProcess();
 
         // Проверка, что метод завершился корректно
         verify(mockWord, atLeastOnce()).print();
@@ -53,7 +53,7 @@ public class GameProcessTest {
 
         when(mockWord.letterCheck(anyString())).thenReturn(false);
 
-        gameProcess.gameProcess();
+        gameProcessDefault.gameProcess();
 
         // Проверяем, что при повторном вводе неправильной буквы, теряется только одна жизнь
         verify(mockGallows, times(1)).add();
@@ -66,7 +66,7 @@ public class GameProcessTest {
 
         when(mockWord.letterCheck(anyString())).thenReturn(true);
 
-        gameProcess.gameProcess();
+        gameProcessDefault.gameProcess();
 
         // Проверка, что при некорректном вводе не добавляется символ в виселицу
         verify(mockGallows, never()).add();
@@ -78,7 +78,7 @@ public class GameProcessTest {
 
         when(mockWord.letterCheck(anyString())).thenReturn(true);
 
-        gameProcess.gameProcess();
+        gameProcessDefault.gameProcess();
 
         // Проверка, что при некорректном вводе не добавляется символ в виселицу
         verify(mockGallows, never()).add();
@@ -90,10 +90,10 @@ public class GameProcessTest {
         when(mockGallows.attempts()).thenReturn(5);
         when(mockScanner.nextLine()).thenReturn("b", "a", "t", "t", "l", "e");
 
-        gameProcess.gameProcess();
+        gameProcessDefault.gameProcess();
 
         // Проверка, что игра выиграна
-        Validate.isTrue(gameProcess.gameStatus() == 1, "Incorrect game status!");
+        Validate.isTrue(gameProcessDefault.gameStatus() == 1, "Incorrect game status!");
     }
 
     @Test
@@ -101,10 +101,10 @@ public class GameProcessTest {
         when(mockGallows.attempts()).thenReturn(0);
         when(mockScanner.nextLine()).thenReturn("b", "a", "t", "t", "l", "e");
 
-        gameProcess.gameProcess();
+        gameProcessDefault.gameProcess();
 
         // Проверка, что игра проиграна если кончились попытки
-        Validate.isTrue(gameProcess.gameStatus() == 2, "Incorrect game status!");
+        Validate.isTrue(gameProcessDefault.gameStatus() == 2, "Incorrect game status!");
     }
 
     @Test
@@ -112,9 +112,9 @@ public class GameProcessTest {
         when(mockGallows.attempts()).thenReturn(-1);
         when(mockScanner.nextLine()).thenReturn("b", "a", "t", "t", "l", "e");
 
-        gameProcess.gameProcess();
+        gameProcessDefault.gameProcess();
 
         // Проверка, что игра проиграна если отрицательные попытки
-        Validate.isTrue(gameProcess.gameStatus() == 2, "Incorrect game status!");
+        Validate.isTrue(gameProcessDefault.gameStatus() == 2, "Incorrect game status!");
     }
 }
